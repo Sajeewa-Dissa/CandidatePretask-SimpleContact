@@ -1,21 +1,27 @@
 # Candidate take-home task
 
 This project contains a simple contact form on the home page of a default project.
+I have chosen to investigate the virtual email server provided at EtherealEmail to allow sending a realistic SMTP message.
+I have developed the form to allow sending attachments (restricted to gif and jpeg only to simplify mime-type processing).
 
-# Requirements
+# Running the Application
 
-The form is located in HomeController.Index.
+Simply complete the form and click the Send button. You are also able to attach multiple jpeg and gif files.
+A number of sample image files are placed in the Uploads folder for testing.
 
-- Write the POST action for this view. It should trigger an email which would be sent via an existing service in the project.
-- Your solution should consider the user experience during an error or success. Ensure that you pay attention to the existing service's implicit input requirements and prevent exceptions from occurring.
-- Please make any other changes to the project as you see fit to improve the overall codebase, this includes to the C# code, and to the frontend HTML, CSS and JS.
-- Feel free to introduce any libraries you wish to aid you in completing the task to a high standard.
+The submitted emails are available at the location https://ethereal.email
+Login using the username and password found in the appsettings.json file to view all submitted emails.
+You can generate new login credentials with a simple button-click and use this to create a new recipient mailbox to send message to.
+In theory, the form will send real SMTP messages to any actual mail server if supplied with valid smtp credentials in config.
 
-# Hints
+# Ideas for Further Development
 
-- As a guide, we estimate it will take around 45 mins to an hour to complete the take home task.
-- The exercise is graded against a predetermined set of criteria. We're looking for code that is clean, readable, performant and maintainable.
+- Maybe find a more efficient way of uploading attachments without having to physically save them to disk temporarily.
+- Replace default MVC error handling with simple success/flags and logged errors (throwing exceptions is expensive).
+- Replace success page with Bootstrap's built-in toasts. Also use this for reporting problems.
+- investigate adding client-side validation to ASP.NET Core, without jQuery or unobtrusive validation.
 
-# How to submit your completed task
+# Caveats
 
-- Please create a public git repository and email recruitment@optoma.co.uk to let us know when you have completed the task, including a link to your repository.
+- Please note I have not tested any server side-exception handling. It may not bubble-up correctly.
+
