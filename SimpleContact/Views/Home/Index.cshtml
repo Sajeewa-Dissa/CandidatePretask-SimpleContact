@@ -2,6 +2,8 @@
     ViewData["Title"] = "Home Page - Contact";
 }
 
+@model EmailData
+
 <div class="row">
     <div class="col-12 text-center">
         <h1 class="display-4">Optoma Pretask</h1>
@@ -12,22 +14,37 @@
 </div>
 <div class="row justify-content-center text-center">
     <div class="col-8">
-        <form asp-action="Index" method="post">
+        <form asp-action="Index" method="post" enctype="multipart/form-data">
             <div class="form-group mb-2">
-                <label for="name">Name</label>
-                <input type="text" class="form-control" id="name">
+                <label asp-for="Name" class="control-label"></label>
+                <input type="text" class="form-control" asp-for="Name">
+                <span asp-validation-for="Name" class="text-danger" />
             </div>
             <div class="form-group mb-2">
-                <label for="email">Email</label>
-                <input type="text" class="form-control" id="email">
+                <label asp-for="Email" class="control-label"></label>
+                <input type="text" class="form-control" asp-for="Email">
+                <span asp-validation-for="Email" class="text-danger" />
             </div>
             <div class="form-group mb-2">
-                <label for="message">Mesage</label>
-                <textarea type="text" class="form-control" id="message"></textarea>
+                <label asp-for="Message" class="control-label"></label>
+                <textarea type="text" class="form-control" asp-for="Message"></textarea>
+                <span asp-validation-for="Message" class="text-danger" />
             </div>
+            
+            <div class="form-group mb-2">
+                <label asp-for="Attachments" class="control-label"></label>
+                <input type="file" class="form-control" id="attachments" asp-for="Attachments" multiple="multiple" accept="image/gif, image/jpg, image/jpeg"></input>
+            </div>
+
             <div class="form-group mb-2">
                 <input type="submit" class="btn btn-primary" value="Send">
             </div>
         </form>
     </div>
 </div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
